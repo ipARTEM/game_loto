@@ -1,3 +1,4 @@
+import sys
 import time
 
 import game_card
@@ -5,7 +6,9 @@ import random_card
 
 play1 = []
 comp = []
-answer = str
+answer = 'ку'
+
+data = {'ans': 0, 'barrels_comp': 15, 'barrels_play1': 15}
 
 print('Добро пожаловать в игру ЛОТО')
 name = input('Как к Вам обращаться: ')
@@ -49,7 +52,7 @@ def steep():
     :return:
     """
     print()
-    print('Происходит перемешивание боченков.....')
+    print('Происходит перемешивание бочонков.....')
     time.sleep(1)
     print(3)
     time.sleep(1)
@@ -57,7 +60,7 @@ def steep():
     time.sleep(1)
     print(1)
     time.sleep(1)
-    print('Боченки перемешаны. Начинаем игру!')
+    print('Бочонки перемешаны. Начинаем игру!')
     time.sleep(1)
 
 
@@ -69,7 +72,7 @@ def check_card(play, barrel):
     pass
 
 
-def checking_cards(play1, comp, barrel):
+def checking_cards(play1, comp, barrel, answer):
     """
     Проверка карточек
     :param play1:
@@ -77,15 +80,31 @@ def checking_cards(play1, comp, barrel):
     :param barrel:
     :return:
     """
+
+    for line in comp:
+        for index, item in enumerate(line):
+            if item == barrel:
+                line[index] = 'XX'
+                data['barrels_comp'] -= 1
+
     for line in play1:
-        for brl in line:
-            if brl == barrel:
-                play1[line[brl]] = 'XX'
+        for index, item in enumerate(line):
+            if item == barrel:
+                line[index] = 'XX'
+                data['barrels_play1'] -= 1
                 if answer == '0':
-                    print(f'Вы проиграли, так как у Вас есть боченок №{barrel}')
-                    break
+                    print(f'Вы проиграли, так как у Вас есть бочонок №{barrel}')
+                    data['ans'] = 0
+                    return data
+                data['ans'] = 1
+                return data
     if answer == '1':
-        print(f'Вы проиграли, так как у Вас нет боченка №{barrel}, а Вы отметили, что есть!')
+        print(f'Вы проиграли, так как у Вас нет бочонка №{barrel}, а Вы отметили, что есть!')
+        data['ans'] = 0
+        return data
+    print(f'Значение answer: {answer}')
+    data['ans'] = 1
+    return data
 
 
 # print(barrels_game)
@@ -100,10 +119,10 @@ def game():
 
         for barrel in barrels_game:
             field()
-            print(f'Вытащен боченок №{barrel}:')
+            print(f'Вытащен бочонок №{barrel}:')
             print()
             while True:
-                answer = input('Если у Вас есть данный боченок нажмите "1", если нет, то "0" ')
+                answer = input('Если у Вас есть данный бочонок нажмите "1", если нет, то "0" ')
                 if answer == '1':
                     print('1')
                     break
@@ -111,8 +130,21 @@ def game():
                     print('0')
                     break
 
-            checking_cards(play1, comp, barrel)
+            data = checking_cards(play1, comp, barrel, answer)
+            if data['ans'] == 0:
+                sys.exit(0)
             print('Прошёл проверку')
+            print(f'Ответ: {data} ')
+
+            for k, v in data.items():
+                if k == 'barrels_comp' and v == 0:
+                    print('Компьютер выиграл!')
+                    sys.exit(0)
+
+            for k, v in data.items():
+                if k == 'barrels_play1' and v == 0:
+                    print('Вы выиграли! УРА!!!')
+                    sys.exit(0)
 
 
 while True:

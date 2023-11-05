@@ -2,7 +2,12 @@ import random
 
 
 def barrels_mix():
-    barrels = [i for i in range(91)]
+    """
+    Создание и перемешивание боченков
+    :return:
+    """
+    barrels = [i for i in range(1, 91)]
+    # print(barrels)
     random.shuffle(barrels)
     return barrels
 
@@ -34,56 +39,58 @@ def new_card():
 
     for i in barrels:
         # print(barrels[i])
-        if 1 < barrels[i] <= 10:
-            numbers1_10.append(barrels[i])
+        if 0 < i <= 10:
+            numbers1_10.append(i)
     new_barrels.append(numbers1_10)
+    # print(numbers1_10)
+    # print(new_barrels)
 
     for i in barrels:
         # print(barrels[i])
-        if 10 < barrels[i] <= 20:
-            numbers11_20.append(barrels[i])
+        if 10 < i <= 20:
+            numbers11_20.append(i)
     new_barrels.append(numbers11_20)
 
     for i in barrels:
         # print(barrels[i])
-        if 20 < barrels[i] <= 30:
-            numbers21_30.append(barrels[i])
+        if 20 < i <= 30:
+            numbers21_30.append(i)
     new_barrels.append(numbers21_30)
 
     for i in barrels:
         # print(barrels[i])
-        if 30 < barrels[i] <= 40:
-            numbers31_40.append(barrels[i])
+        if 30 < i <= 40:
+            numbers31_40.append(i)
     new_barrels.append(numbers31_40)
 
     for i in barrels:
         # print(barrels[i])
-        if 40 < barrels[i] <= 50:
-            numbers41_50.append(barrels[i])
+        if 40 < i <= 50:
+            numbers41_50.append(i)
     new_barrels.append(numbers41_50)
 
     for i in barrels:
         # print(barrels[i])
-        if 50 < barrels[i] <= 60:
-            numbers51_60.append(barrels[i])
+        if 50 < i <= 60:
+            numbers51_60.append(i)
     new_barrels.append(numbers51_60)
 
     for i in barrels:
         # print(barrels[i])
-        if 60 < barrels[i] <= 70:
-            numbers61_70.append(barrels[i])
+        if 60 < i <= 70:
+            numbers61_70.append(i)
     new_barrels.append(numbers61_70)
 
     for i in barrels:
         # print(barrels[i])
-        if 70 < barrels[i] <= 80:
-            numbers71_80.append(barrels[i])
+        if 70 < i <= 80:
+            numbers71_80.append(i)
     new_barrels.append(numbers71_80)
 
     for i in barrels:
         # print(barrels[i])
-        if 80 < barrels[i] <= 90:
-            numbers81_90.append(barrels[i])
+        if 80 < i <= 90:
+            numbers81_90.append(i)
     new_barrels.append(numbers81_90)
 
     # for n in numbers1_10:
