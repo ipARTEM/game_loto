@@ -3,6 +3,8 @@ import time
 
 import game_card
 import random_card
+from faker import Faker
+fake = Faker('ru-RU')
 
 if __name__=='__main__':
     play1 = []
